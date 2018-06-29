@@ -23,7 +23,7 @@ const (
 var (
 	Cdate = "\033[0;37m"
 	Ctime = "\033[0;37m"
-	Cname = "\033[0;36m"
+	Cname = "\033[0;35m"
 )
 
 const creset = "\033[0m"
@@ -37,12 +37,12 @@ type Formatter interface {
 
 // Mlevel defines logging level field colorization.
 var Mlevel = map[int][2]string{
-	Ldebug:   {"DBG", "\033[0;34m"},
-	Linfo:    {"INF", "\033[0;32m"},
-	Lwarning: {"WRN", "\033[0;33m"},
-	Lerror:   {"ERR", "\033[0;31m"},
-	Lfatal:   {"FTL", "\033[1;31m"},
-	Lpanic:   {"PAN", "\033[1;31m"},
+	Ldebug:   {"DBG", "\033[97;42m"},
+	Linfo:    {"INF", "\033[97;44m"},
+	Lwarning: {"WRN", "\033[97;43m"},
+	Lerror:   {"ERR", "\033[97;41m"},
+	Lfatal:   {"FTL", "\033[97;5;41m"},
+	Lpanic:   {"PAN", "\033[97;5;41m"},
 }
 
 type textFormatter struct {
@@ -101,7 +101,7 @@ func (f *textFormatter) formatHeader(buf *[]byte, lvl int, name string) {
 		if f.flags&(Ftime|Fmilliseconds) != 0 {
 			hour, min, sec := now.Clock()
 			if f.flags&Fcolor != 0 {
-				*buf = append(*buf, Cdate...)
+				*buf = append(*buf, Ctime...)
 			}
 			itoa(buf, hour, 2)
 			*buf = append(*buf, ':')
