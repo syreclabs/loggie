@@ -170,7 +170,7 @@ func (l *defaultLogger) writef(lvl int, format string, v ...interface{}) (string
 func (l *defaultLogger) writeStack(lvl int) {
 	stack := make([]byte, 1024*8)
 	stack = stack[:runtime.Stack(stack, false)]
-	l.write(lvl, string(stack))
+	l.w.Write(stack)
 }
 
 var Default Logger
