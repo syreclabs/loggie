@@ -1,5 +1,5 @@
 // Package loggie provides simple unstructured leveled logging.
-package loggie
+package loggie // import "syreclabs.com/go/loggie"
 
 import (
 	"fmt"
